@@ -1,11 +1,19 @@
+async function loadPacotes(criteria) {
+  const response = await fetch(endpointFor(criteria));
+  const data = await response.json();
+  console.log(`Carregado pacotes (payload : ${data})`);
+  return data;
+
+}
+
+function endpointFor(criteria) {
 const endpoint = "http://localhost:8080/pacotes";
 
-async function loadPacotes() {
-    const response = await fetch(endpoint);
-    const data = await response.json();
-    console.log(`Carregado pacotes (payload : ${JSON.stringify(data)})`);
-    return data;
-  
+if (criteria) {
+  return `${endpoint}?criteria=${criteria}`
+} else {
+  return endpoint;    
 }
-  
-  export { loadPacotes };
+}
+
+export { loadPacotes };

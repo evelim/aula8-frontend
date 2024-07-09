@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { loadPacotes } from './stub.js';
 
 const InnerButton = styled.button`
+    margin: 10px;
 `;
 
 function Button(props) {
-  const { setData } = props;
+  const { setData, criteriaProp } = props;
   const onClick = async () => {
-    const data = await loadPacotes();
+    console.log(`criteria on button? ${criteriaProp}`)
+    const data = await loadPacotes(criteriaProp);
     setData(data)
   }
 
